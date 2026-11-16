@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080b12">
+<title>EDGE — Sports Intelligence</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--bg:#080b12;--panel:#101622;--panel2:#141d2b;--line:rgba(255,255,255,.08);--text:#f4f7fb;--muted:#8793a5;--lime:#c5f36b;--cyan:#65d9d0;--red:#ff6677}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% -10%,rgba(67,103,125,.22),transparent 35%),var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}button,input{font:inherit}button{cursor:pointer}
+.shell{display:grid;grid-template-columns:245px 1fr;min-height:100vh}.sidebar{border-right:1px solid var(--line);padding:28px 18px;position:sticky;top:0;height:100vh;background:rgba(8,11,18,.78);backdrop-filter:blur(20px)}.brand{font:700 25px 'Space Grotesk';letter-spacing:-1.5px;padding:4px 13px 36px}.brand span{color:var(--lime)}.brand small{display:block;color:var(--muted);font:600 9px 'DM Sans';letter-spacing:3px;margin-top:4px}.nav-label{font-size:9px;color:#596678;letter-spacing:2px;font-weight:800;padding:14px 13px 9px}.nav a{display:flex;align-items:center;gap:13px;padding:12px 13px;border-radius:10px;color:#9ca8b8;text-decoration:none;font-size:12px;margin:3px 0;transition:.2s}.nav a:hover,.nav a.active{background:rgba(197,243,107,.1);color:var(--lime)}.nav .ico{width:18px;text-align:center;font-size:16px}.side-bottom{position:absolute;bottom:24px;left:18px;right:18px}.upgrade{padding:16px;border-radius:13px;background:linear-gradient(135deg,#1b2a2b,#17212a);border:1px solid rgba(197,243,107,.16)}.upgrade b{font:600 13px 'Space Grotesk'}.upgrade p{font-size:10px;line-height:1.6;color:var(--muted)}.upgrade button{background:var(--lime);color:#111;border:0;border-radius:7px;padding:9px 12px;font-weight:800;font-size:10px}
+main{min-width:0;padding:0 36px 50px}.topbar{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.crumb{font-size:12px;color:var(--muted)}.crumb b{color:white}.top-actions{display:flex;align-items:center;gap:12px}.search{width:225px;background:#111925;border:1px solid var(--line);border-radius:9px;padding:10px 13px;color:white;outline:none;font-size:11px}.search:focus{border-color:var(--lime)}.icon-btn{height:36px;width:36px;border:1px solid var(--line);border-radius:9px;background:#111925;color:#cbd4df}.avatar{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#c5f36b,#54bdb0);display:grid;place-items:center;color:#101510;font-weight:900;font-size:12px}
+.hero{margin:30px 0 27px;padding:31px 34px;border:1px solid rgba(197,243,107,.13);border-radius:17px;background:radial-gradient(ellipse at 90% 10%,rgba(101,217,208,.18),transparent 30%),linear-gradient(110deg,#17232b,#101823 60%,#14242b);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:280px;height:280px;border:1px solid rgba(197,243,107,.12);border-radius:50%;right:7%;top:-120px;box-shadow:0 0 0 30px rgba(197,243,107,.025),0 0 0 65px rgba(197,243,107,.02)}.hero-inner{position:relative;z-index:1;max-width:650px}.eyebrow{font-size:9px;letter-spacing:2.4px;text-transform:uppercase;color:var(--lime);font-weight:800}.hero h1{font:600 clamp(30px,4vw,48px)/1.1 'Space Grotesk';letter-spacing:-2px;margin:14px 0 10px}.hero p{font-size:12px;color:#aab6c4;line-height:1.7;max-width:470px}.hero-buttons{display:flex;gap:10px;margin-top:20px}.primary,.secondary{border:0;border-radius:8px;padding:11px 16px;font-size:10px;font-weight:800}.primary{background:var(--lime);color:#10150c}.secondary{background:rgba(255,255,255,.08);color:white;border:1px solid var(--line)}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:27px 0 13px}.section-head h2{font:600 17px 'Space Grotesk';margin:0;letter-spacing:-.4px}.section-head small{font-size:10px;color:var(--muted)}.live-dot{display:inline-block;width:6px;height:6px;background:#ff5d70;border-radius:50%;margin-right:7px;box-shadow:0 0 10px #ff5d70}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}.stat-top{display:flex;justify-content:space-between;color:var(--muted);font-size:10px}.stat strong{display:block;font:600 25px 'Space Grotesk';margin:11px 0 4px}.trend{font-size:9px;color:var(--lime)}.stat-icon{color:var(--cyan);font-size:16px}
+.content-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(250px,.85fr);gap:15px;margin-top:14px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:18px;min-width:0}.panel-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.panel-title h3{font:600 13px 'Space Grotesk';margin:0}.panel-title a{font-size:10px;color:var(--lime);text-decoration:none}
+.filters{display:flex;gap:6px;flex-wrap:wrap}.filter{border:1px solid var(--line);background:#151e2b;color:#8996a7;border-radius:6px;padding:7px 10px;font-size:9px}.filter.active{background:rgba(197,243,107,.12);color:var(--lime);border-color:rgba(197,243,107,.3)}
+.match{display:grid;grid-template-columns:1fr auto 1fr auto;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}.match:last-child{border:0;padding-bottom:0}.team{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:700}.team.right{justify-content:flex-end;text-align:right}.team-mark{width:28px;height:28px;border-radius:8px;background:#202e3c;display:grid;place-items:center;color:var(--cyan);font:700 10px 'Space Grotesk'}.team.right .team-mark{background:#332a36;color:#f4a0b1}.score{text-align:center;font:600 13px 'Space Grotesk';white-space:nowrap}.score small{display:block;font:9px 'DM Sans';color:var(--muted);margin-top:3px}.live-label{font-size:8px;color:var(--red);font-weight:800;letter-spacing:1px}.odds{display:flex;gap:5px}.odd{background:#1a2534;border:1px solid var(--line);border-radius:6px;padding:8px 10px;text-align:center;min-width:43px}.odd small{display:block;color:var(--muted);font-size:8px;margin-bottom:3px}.odd b{font-size:10px;color:var(--lime)}
+.activity{display:flex;flex-direction:column;gap:15px}.activity-item{display:flex;gap:10px;align-items:flex-start}.activity-icon{height:30px;width:30px;flex:0 0 30px;border-radius:9px;background:rgba(101,217,208,.1);color:var(--cyan);display:grid;place-items:center}.activity-item b{font-size:10px;display:block;margin:1px 0 4px}.activity-item span{font-size:9px;color:var(--muted);line-height:1.5}
+.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;white-space:nowrap}th{text-align:left;color:#748194;font-size:9px;letter-spacing:1px;font-weight:700;padding:10px;border-bottom:1px solid var(--line)}td{padding:12px 10px;border-bottom:1px solid var(--line);font-size:10px}tr:last-child td{border:0}.league{display:flex;align-items:center;gap:8px;font-weight:700}.league i{font-style:normal;background:#202b39;border-radius:6px;padding:6px;color:var(--cyan)}.positive{color:var(--lime)}.status{color:var(--cyan);background:rgba(101,217,208,.1);padding:4px 7px;border-radius:5px;font-size:8px}
+.notice{border:1px solid rgba(197,243,107,.18);background:rgba(197,243,107,.045);border-radius:10px;padding:12px 14px;margin-top:15px;color:#aab6c4;font-size:10px;line-height:1.6}.notice b{color:var(--lime)}
+footer{padding:22px 0;color:#637083;font-size:9px;display:flex;justify-content:space-between;gap:15px}
+@media(max-width:1050px){.shell{grid-template-columns:205px 1fr}.sidebar{padding:22px 12px}.side-bottom{left:12px;right:12px}main{padding:0 22px 40px}.content-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.shell{display:block}.sidebar{position:relative;height:auto;padding:14px 17px;border-right:0;border-bottom:1px solid var(--line)}.brand{padding:0 0 12px}.nav{display:flex;overflow:auto;gap:5px}.nav-label,.side-bottom{display:none}.nav a{white-space:nowrap;padding:9px 10px}.nav a:nth-child(n){display:flex}.nav a .ico{display:none}main{padding:0 14px 30px}.topbar{height:65px}.search{width:145px}.hero{padding:23px 20px;margin-top:18px}.hero:after{right:-160px}.hero h1{font-size:34px}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:21px}.content-grid{display:block}.panel{margin-bottom:12px;padding:14px}.match{grid-template-columns:1fr auto 1fr;gap:5px}.odds{grid-column:1/-1;justify-content:center}.team{font-size:9px}.team-mark{width:24px;height:24px}.score{font-size:11px}footer{display:block;line-height:2}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="sidebar">
+  <div class="brand">EDGE<span>.</span><small>SPORTS INTELLIGENCE</small></div>
+  <div class="nav-label">WORKSPACE</div>
+  <nav class="nav">
+    <a class="active" href="#overview"><span class="ico">◫</span> Overview</a>
+    <a href="#matches"><span class="ico">◉</span> Live matches</a>
+    <a href="#markets"><span class="ico">⌁</span> Markets</a>
+    <a href="#insights"><span class="ico">⌗</span> Insights</a>
+  </nav>
+  <div class="nav-label">PERSONAL</div>
+  <nav class="nav">
+    <a href="#watchlist"><span class="ico">☆</span> Watchlist</a>
+    <a href="#activity"><span class="ico">◷</span> Activity</a>
+    <a href="#settings"><span class="ico">⚙</span> Settings</a>
+  </nav>
+  <div class="side-bottom"><div class="upgrade"><b>Stay one step ahead.</b><p>Explore deeper match insights and smarter ways to follow the game.</p><button onclick="document.getElementById('insights').scrollIntoView({behavior:'smooth'})">EXPLORE INSIGHTS ↗</button></div></div>
+</aside>
+<main id="overview">
+  <div class="topbar"><div class="crumb">Workspace&nbsp; / &nbsp;<b>Overview</b></div><div class="top-actions"><input class="search" id="search" placeholder="⌕  Search matches..." /><button class="icon-btn" title="Notifications">♧</button><div class="avatar">JD</div></div></div>
+  <section class="hero">
+    <div class="hero-inner"><div class="eyebrow">● &nbsp; YOUR GAME, IN FOCUS</div><h1>See the game<br>from every angle.</h1><p>A clean, data-led space to follow fixtures, compare sample odds and explore match insights. Everything important, at a glance.</p><div class="hero-buttons"><button class="primary" onclick="document.getElementById('matches').scrollIntoView({behavior:'smooth'})">VIEW MATCH CENTRE ↗</button><button class="secondary" onclick="document.getElementById('insights').scrollIntoView({behavior:'smooth'})">EXPLORE INSIGHTS</button></div></div>
+  </section>
+  <div class="section-head"><h2>At a glance</h2><small>DEMO DASHBOARD · SAMPLE DATA</small></div>
+  <section class="stats">
+    <div class="stat"><div class="stat-top">Live events <span class="stat-icon">◉</span></div><strong>08</strong><span class="trend">Across 4 competitions</span></div>
+    <div class="stat"><div class="stat-top">Today's fixtures <span class="stat-icon">▦</span></div><strong>24</strong><span class="trend">12 upcoming</span></div>
+    <div class="stat"><div class="stat-top">Tracked leagues <span class="stat-icon">⌘</span></div><strong>06</strong><span class="trend">Across 3 sports</span></div>
+    <div class="stat"><div class="stat-top">Saved matches <span class="stat-icon">☆</span></div><strong>12</strong><span class="trend">Your watchlist</span></div>
+  </section>
+  <div class="content-grid">
+    <section class="panel" id="matches">
+      <div class="panel-title"><h3><span class="live-dot"></span>Match centre</h3><a href="#markets">ALL FIXTURES ↗</a></div>
+      <div class="filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="live">Live now</button><button class="filter" data-filter="upcoming">Upcoming</button></div>
+      <div id="matchList">
+        <div class="match" data-state="live"><div class="team"><span class="team-mark">MC</span>Man City</div><div class="score">2 : 1<small class="live-label">LIVE · 67′</small></div><div class="team right">Arsenal<span class="team-mark">AR</span></div><div class="odds"><div class="odd"><small>1</small><b>1.85</b></div><div class="odd"><small>X</small><b>3.40</b></div><div class="odd"><small>2</small><b>4.10</b></div></div></div>
+        <div class="match" data-state="upcoming"><div class="team"><span class="team-mark">RM</span>Real Madrid</div><div class="score">20:30<small>STARTS SOON</small></div><div class="team right">Barcelona<span class="team-mark">FC</span></div><div class="odds"><div class="odd"><small>1</small><b>2.10</b></div><div class="odd"><small>X</small><b>3.20</b></div><div class="odd"><small>2</small><b>2.85</b></div></div></div>
+        <div class="match" data-state="upcoming"><div class="team"><span class="team-mark">LI</span>Liverpool</div><div class="score">22:00<small>UPCOMING</small></div><div class="team right">Chelsea<span class="team-mark">CH</span></div><div class="odds"><div class="odd"><small>1</small><b>1.95</b></div><div class="odd"><small>X</small><b>3.50</b></div><div class="odd"><small>2</small><b>3.60</b></div></div></div>
+        <div class="match" data-state="live"><div class="team"><span class="team-mark">MI</span>Mumbai</div><div class="score">148/4<small class="live-label">LIVE · 16.2 OV</small></div><div class="team right">Chennai<span class="team-mark">CS</span></div><div class="odds"><div class="odd"><small>1</small><b>1.72</b></div><div class="odd"><small>X</small><b>—</b></div><div class="odd"><small>2</small><b>2.05</b></div></div></div>
+      </div>
+      <div class="notice"><b>Demo information:</b> Match names, scores and decimal odds shown here are illustrative placeholders, not live data or betting recommendations.</div>
+    </section>
+    <section class="panel" id="activity">
+      <div class="panel-title"><h3>Latest activity</h3><a href="#watchlist">VIEW ALL ↗</a></div>
+      <div class="activity">
+        <div class="activity-item"><div class="activity-icon">↗</div><div><b>Fixture added to watchlist</b><span>Real Madrid vs Barcelona<br>Just now</span></div></div>
+        <div class="activity-item"><div class="activity-icon">◷</div><div><b>Kick-off approaching</b><span>Liverpool vs Chelsea<br>In 45 minutes</span></div></div>
+        <div class="activity-item"><div class="activity-icon">⌁</div><div><b>Market snapshot updated</b><span>Premier League overview<br>Today, 14:20</span></div></div>
+        <div class="activity-item"><div class="activity-icon">☆</div><div><b>Watchlist synced</b><span>12 events saved<br>Yesterday</span></div></div>
+      </div>
+    </section>
+  </div>
+  <section class="panel" id="markets" style="margin-top:15px">
+    <div class="panel-title"><h3>Popular competitions</h3><a href="#watchlist">BROWSE ALL ↗</a></div>
+    <div class="table-wrap"><table><thead><tr><th>COMPETITION</th><th>SPORT</th><th>EVENTS TODAY</th><th>STATUS</th><th>FOLLOW</th></tr></thead><tbody>
+      <tr><td><div class="league"><i>⚽</i> Premier League</div></td><td>Football</td><td>6 fixtures</td><td><span class="status">IN PLAY</span></td><td class="positive">☆ Follow</td></tr>
+      <tr><td><div class="league"><i>🏆</i> UEFA Champions League</div></td><td>Football</td><td>4 fixtures</td><td><span class="status">UPCOMING</span></td><td class="positive">☆ Follow</td></tr>
+      <tr><td><div class="league"><i>🏏</i> T20 League</div></td><td>Cricket</td><td>2 fixtures</td><td><span class="status">IN PLAY</span></td><td class="positive">☆ Follow</td></tr>
+      <tr><td><div class="league"><i>🎾</i> ATP Tour</div></td><td>Tennis</td><td>8 matches</td><td><span class="status">UPCOMING</span></td><td class="positive">☆ Follow</td></tr>
+    </tbody></table></div>
+  </section>
+  <section class="panel" id="insights" style="margin-top:15px">
+    <div class="panel-title"><h3>Match insights</h3><a href="#overview">HOW IT WORKS ↗</a></div>
+    <div class="stats">
+      <div class="stat"><div class="stat-top">Form guide</div><strong style="font-size:17px">W · W · D · L · W</strong><span class="trend">Recent results</span></div>
+      <div class="stat"><div class="stat-top">Head-to-head</div><strong>12 / 8</strong><span class="trend">Illustrative record</span></div>
+      <div class="stat"><div class="stat-top">Avg. goals</div><strong>2.6</strong><span class="trend">Sample competition data</span></div>
+      <div class="stat"><div class="stat-top">Clean sheets</div><strong>34%</strong><span class="trend">Sample season statistic</span></div>
+    </div>
+  </section>
+  <footer><span>EDGE. SPORTS INTELLIGENCE</span><span>Demo interface · Sample data only · Play responsibly</span></footer>
+</main>
+</div>
+<script>
+const filters=document.querySelectorAll('.filter');
+filters.forEach(btn=>btn.addEventListener('click',()=>{
+  filters.forEach(x=>x.classList.remove('active'));btn.classList.add('active');
+  document.querySelectorAll('.match').forEach(row=>row.style.display=(btn.dataset.filter==='all'||row.dataset.state===btn.dataset.filter)?'grid':'none');
+}));
+document.getElementById('search').addEventListener('input',e=>{
+  const q=e.target.value.toLowerCase();
+  document.querySelectorAll('.match').forEach(row=>row.style.display=row.textContent.toLowerCase().includes(q)?'grid':'none');
+});
+document.querySelectorAll('.nav a').forEach(a=>a.addEventListener('click',()=>{
+  document.querySelectorAll('.nav a').forEach(x=>x.classList.remove('active'));a.classList.add('active');
+}));
+document.querySelectorAll('.positive').forEach(el=>el.addEventListener('click',()=>{
+  el.textContent=el.textContent.includes('Following')?'☆ Follow':'✓ Following';
+}));
+</script>
+</body>
+</html>
